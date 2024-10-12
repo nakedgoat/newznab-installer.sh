@@ -3,7 +3,7 @@
 # Step 1: Install required packages
 echo "Updating and installing required packages..."
 sudo apt update && sudo apt upgrade -y
-if ! sudo apt install -y ssh screen apache2 php mariadb-server php-fpm php-pear php-gd php-mysql php-redis php-curl php-json php-mbstring unrar lame mediainfo subversion ffmpeg redis memcached; then
+if ! sudo apt install -y ssh screen apache2 php mariadb-server php-fpm php-pear php-gd php-mysql php-redis php-curl php-json php-mbstring unrar lame mediainfo subversion ffmpeg redis memcached pear; then
     echo "Error: Failed to install required packages"
     exit 1
 fi
