@@ -22,11 +22,12 @@ echo -e "[mysqld]\ngroup_concat_max_len=8192\ninnodb_flush_log_at_trx_commit = 2
 echo "Creating necessary directories..."
 sudo mkdir -p /var/www/newznab/htdocs /var/www/newznab/logs
 
+# Removed as NN provides this, edit it with the coorect info.
 # Step 4: Create a script for keeping Newznab up to date
-echo "Creating update script..."
-echo -e "#!/bin/bash\nsvn export --no-auth-cache --force --username <username> --password <password> svn://svn.newznab.com/nn/branches/nnplus /var/www/newznab/htdocs/\n\ncd /var/www/newznab/htdocs/misc/update_scripts\nphp update_database_version.php\n\nsystemctl restart memcached\nsystemctl restart apache2\nsystemctl restart php8.3-fpm" | sudo tee /var/www/newznab/svn.sh
-sudo chmod +x /var/www/newznab/svn.sh
-sudo /var/www/newznab/svn.sh 2> /dev/null
+# echo "Creating update script..."
+# echo -e "#!/bin/bash\nsvn export --no-auth-cache --force --username <username> --password <password> svn://svn.newznab.com/nn/branches/nnplus /var/www/newznab/htdocs/\n\ncd /var/www/newznab/htdocs/misc/update_scripts\nphp update_database_version.php\n\nsystemctl restart memcached\nsystemctl restart apache2\nsystemctl restart php8.3-fpm" | sudo tee /var/www/newznab/svn.sh
+# sudo chmod +x /var/www/newznab/svn.sh
+# sudo /var/www/newznab/svn.sh 2> /dev/null
 
 # Step 5: Setup website permissions
 echo "Setting directory permissions..."
