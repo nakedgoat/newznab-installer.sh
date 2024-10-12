@@ -6,3 +6,4 @@ chmod +x nn-installer.sh
 sudo ./nn-installer.sh
 
 
+See also : https://github.com/nakedgoat/newznab-backfill.php/tree/main
