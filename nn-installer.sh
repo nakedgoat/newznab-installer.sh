@@ -11,7 +11,7 @@ fi
 # Step 2: Configure MariaDB
 echo "Configuring MariaDB..."
 sudo mysql -u root <<EOF
-CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'Q1w2o0i9!';
+CREATE USER 'newznab'@'localhost' IDENTIFIED BY '<yourpassdhere>';
 GRANT ALL PRIVILEGES ON newznab.* TO 'newznab'@'localhost' WITH GRANT OPTION;
 EOF
 
@@ -24,7 +24,7 @@ sudo mkdir -p /var/www/newznab/htdocs /var/www/newznab/logs
 
 # Step 4: Create a script for keeping Newznab up to date
 echo "Creating update script..."
-echo -e "#!/bin/bash\nsvn export --no-auth-cache --force --username svnplus --password svnplu5 svn://svn.newznab.com/nn/branches/nnplus /var/www/newznab/htdocs/\n\ncd /var/www/newznab/htdocs/misc/update_scripts\nphp update_database_version.php\n\nsystemctl restart memcached\nsystemctl restart apache2\nsystemctl restart php8.3-fpm" | sudo tee /var/www/newznab/svn.sh
+echo -e "#!/bin/bash\nsvn export --no-auth-cache --force --username <username> --password <password> svn://svn.newznab.com/nn/branches/nnplus /var/www/newznab/htdocs/\n\ncd /var/www/newznab/htdocs/misc/update_scripts\nphp update_database_version.php\n\nsystemctl restart memcached\nsystemctl restart apache2\nsystemctl restart php8.3-fpm" | sudo tee /var/www/newznab/svn.sh
 sudo chmod +x /var/www/newznab/svn.sh
 sudo /var/www/newznab/svn.sh 2> /dev/null
 
@@ -100,7 +100,7 @@ sudo snap install core
 sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-sudo certbot --apache -d your-domain
+sudo certbot --apache -d <your-domain.here>
 
 # Ask if the user wants to install Spotweb
 read -p "Do you want to install Spotweb? (y/n) " -n 1 -r
@@ -110,4 +110,4 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo git clone https://github.com/spotweb/spotweb.git /var/www/spotweb
 fi
 
-echo "Installation complete. Visit http://yourhost/install.php to continue the setup."
+echo "Installation complete. Visit http://yourhost/spotweb/install.php to continue the setup."
