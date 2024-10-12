@@ -11,7 +11,7 @@ chmod +x nn-installer.sh
 sudo ./nn-installer.sh
 
 * be sure to edit your domain for SSL via LE cerbot.
-* also the script will create your DB, so us that information when on database install step of the NN installer. Otherwise you'll get a 590 err.
+* also the script will create your DB, so use that information when on database install step of the NN installer. Otherwise you'll get a 590 err.
   
 
 See also : https://github.com/nakedgoat/newznab-backfill.php/tree/main
