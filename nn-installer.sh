@@ -22,7 +22,7 @@ echo -e "[mysqld]\ngroup_concat_max_len=8192\ninnodb_flush_log_at_trx_commit = 2
 echo "Creating necessary directories..."
 sudo mkdir -p /var/www/newznab/htdocs /var/www/newznab/logs
 
-# Removed as NN provides this, edit it with the coorect info.
+# Removed as NN provides this, edit it with the correct info.
 # Step 4: Create a script for keeping Newznab up to date
 # echo "Creating update script..."
 # echo -e "#!/bin/bash\nsvn export --no-auth-cache --force --username <username> --password <password> svn://svn.newznab.com/nn/branches/nnplus /var/www/newznab/htdocs/\n\ncd /var/www/newznab/htdocs/misc/update_scripts\nphp update_database_version.php\n\nsystemctl restart memcached\nsystemctl restart apache2\nsystemctl restart php8.3-fpm" | sudo tee /var/www/newznab/svn.sh
@@ -41,7 +41,7 @@ echo -e "<VirtualHost *:80>\n\t<Directory /var/www/newznab/htdocs/www/>\n\t\tOpt
 echo "Updating PHP settings..."
 sudo sed -i "s/;date.timezone =/date.timezone = 'America\/Phoenix'/g" /etc/php/8.3/fpm/php.ini
 sudo sed -i "s/max_execution_time = 30/max_execution_time = 120/g" /etc/php/8.3/fpm/php.ini
-sudo sed -i "s/memory_limit = 128M/memory_limit = -1/g" /etc/php/8.3/fpm/php.ini
+sudo sed -i "s/memory_limit =  -1/memory_limit = -1/g" /etc/php/8.3/fpm/php.ini
 
 # Enable Apache mod_rewrite and php-fpm, then restart services
 echo "Enabling necessary Apache modules..."
@@ -60,11 +60,11 @@ else
   echo "Unable to access the Newznab+ installation wizard at http://localhost/install"
 fi
 
-# Optional Step 1: Configure Newznab+ to run continually
-echo "Configuring Newznab+ to run in the background using screen..."
-echo -e "export NEWZNAB_PATH=\"/var/www/newznab/htdocs/misc/update_scripts\"\nexport NEWZNAB_SLEEP_TIME=\"30\" # in seconds\n/usr/bin/php \${NEWZNAB_PATH}/update_binaries_threaded.php" | sudo tee /var/www/newznab/htdocs/misc/update_scripts/nix_scripts/newznab_local.sh
-sudo chmod +x /var/www/newznab/htdocs/misc/update_scripts/nix_scripts/newznab_local.sh
-screen -dmS newznab /var/www/newznab/htdocs/misc/update_scripts/nix_scripts/newznab_local.sh
+# REMOVED NN provides newznab_screen.sh 
+#echo "Configuring Newznab+ to run in the background using screen..."
+#echo -e "export NEWZNAB_PATH=\"/var/www/newznab/htdocs/misc/update_scripts\"\nexport NEWZNAB_SLEEP_TIME=\"30\" # in seconds\n/usr/bin/php \${NEWZNAB_PATH}/update_binaries_threaded.php" | sudo tee /var/www/newznab/htdocs/misc/update_scripts/nix_scripts/newznab_local.sh
+#sudo chmod +x /var/www/newznab/htdocs/misc/update_scripts/nix_scripts/newznab_local.sh
+#screen -dmS newznab /var/www/newznab/htdocs/misc/update_scripts/nix_scripts/newznab_local.sh
 
 # Optional Step 2: Configure Elasticsearch (Optional)
 echo "Installing and configuring Elasticsearch..."
