@@ -31,7 +31,7 @@ sudo mkdir -p /var/www/newznab/htdocs /var/www/newznab/logs
 
 # Step 5: Setup website permissions
 echo "Setting directory permissions..."
-sudo chmod -R 755 /var/www/newznab/htdocs/www/lib/smarty/templates_c /var/www/newznab/htdocs/www/covers /var/www/newznab/htdocs/www/install /var/www/newznab/htdocs/db/cache /var/www/newznab/htdocs/nzbfiles/
+sudo chmod -R 777 /var/www/newznab/htdocs/www/lib/smarty/templates_c /var/www/newznab/htdocs/www/covers /var/www/newznab/htdocs/www/install /var/www/newznab/htdocs/db/cache /var/www/newznab/htdocs/nzbfiles/
 
 # Replace default Apache config
 echo "Configuring Apache for Newznab..."
